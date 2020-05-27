@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { ButtonContainer } from "./styled-components/ButtonContainer";
 import { setToWatched } from "../redux/actions/movies.actions";
 import { connect } from "react-redux";
 
 const MovieItem = ({ movie, setToWatched }) => {
-	const [hasBeenWatched, setHasBeenWatched] = useState(false);
-
 	const handleRadioChange = (e) => {
 		setToWatched(movie.id);
 	};
 
+	console.log("*********************************");
+	console.log(movie);
+
 	return (
 		<div>
-			{movie === undefined ? (
+			{movie === undefined && movie !== [] ? (
 				<div>Loading...</div>
 			) : (
 				<div>

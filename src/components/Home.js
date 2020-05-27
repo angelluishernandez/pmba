@@ -5,19 +5,22 @@ import { connect } from "react-redux";
 import { addMovie } from "../redux/actions/movies.actions";
 import MoviesList from "./MoviesList";
 import { v4 as uuidv4 } from "uuid";
+import FilterBar from "./FilterBar";
 
 const Home = ({ addMovie, movies }) => {
 	const [movieName, setMovieName] = useState("");
 	const [movieGenres, setMovieGenres] = useState([]);
 	const [movie, setMovie] = useState({});
-
-	const [isLoading, setIsLoading] = useState(false);
+	const genresFilter = ["Horror", "Romance", "Comedy"];
+	const [filterGenres, setFilterGenres] = useState([]);
 
 	useEffect(() => {
 		if (Object.keys(movie).length !== 0) {
 			addMovie(movie);
 		}
 	}, [movie]);
+
+	// Handle new movie submit
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -43,9 +46,22 @@ const Home = ({ addMovie, movies }) => {
 		});
 	};
 
+	// Handle filter radio changes
+
+	const handleRadioChange = (e) => {
+		const value = e.target.value.toLowerCase();
+		setFilterGenres([...filterGenres, value]);
+	};
+
 	return (
 		<React.Fragment>
+			<FilterBar
+				filterGenres={filterGenres}
+				setFilterGenres={setFilterGenres}
+				handleRadioChange={handleRadioChange}
+			/>
 			{/* // This should have its own component */}
+
 			<form onSubmit={handleSubmit}>
 				<div>
 					<label htmlFor="movieName">Movie name</label>
