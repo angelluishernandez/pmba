@@ -1,6 +1,9 @@
 :root {
 	--titleFont: "Quicksand", sans-serif;
 	--textFont: "Poppins", sans-serif;
+	--secondaryBg: #f9f9f9;
+	--mainBg: #ffffff;
+	--btnBg: #3ae7ab;
 }
 
 .App {
