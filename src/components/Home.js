@@ -4,6 +4,7 @@ import { ButtonContainer } from "./styled-components/ButtonContainer";
 import { connect } from "react-redux";
 import { addMovie } from "../redux/actions/movies.actions";
 import MoviesList from "./MoviesList";
+import { v4 as uuidv4 } from "uuid";
 
 const Home = ({ addMovie, movies }) => {
 	const [movieName, setMovieName] = useState("");
@@ -38,10 +39,9 @@ const Home = ({ addMovie, movies }) => {
 			name: movieName,
 			movieGenres: reducedGenres,
 			watched: false,
+			id: uuidv4(),
 		});
 	};
-
-	console.log(movies);
 
 	return (
 		<React.Fragment>
@@ -67,7 +67,7 @@ const Home = ({ addMovie, movies }) => {
 				<ButtonContainer>Add a movie</ButtonContainer>
 			</form>
 
-			{movies.length > 0 && <MoviesList movies={movies} />}
+			<MoviesList movies={movies} />
 		</React.Fragment>
 	);
 };

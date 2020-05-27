@@ -7,16 +7,11 @@ const MoviesList = ({ movies }) => {
 	);
 
 	return (
-		<>
+		<div>
 			{sortedMovies.map((movie, index) => (
-				<MovieItem
-					name={movie.name}
-					movieGenres={movie.movieGenres}
-					wacthed={movie.watched}
-					key={index}
-				/>
+				<MovieItem movie={movie} key={index} />
 			))}
-		</>
+		</div>
 	);
 };
 
