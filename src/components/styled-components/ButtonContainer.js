@@ -6,17 +6,19 @@ export const ButtonContainer = styled.button`
 	background-color: transparent;
 	text-align: center;
 	border: 0.1rem solid var(--btnBg);
-	border-color: var(--btnBg);
-	color: var(--btnBg);
+	border-color: ${(props) =>
+		props.delete ? "var(--mainRed)" : "var(--btnBg)"};
+	color: ${(props) => (props.delete ? "var(--mainRed)" : "var(--btnBg)")};
 	border-radius: 5px;
 	font-family: var(--textFont);
 	font-weight: 800;
 	transition: 0.2s;
 
 	&:hover {
-		background-color: var(--btnBg);
+		background-color: ${(props) =>
+			props.delete ? "var(--mainRed)" : "var(--btnBg)"};
 		color: var(--mainBg);
-		-webkit-transform: translateY(-3px);
-		transform: translateY(-3px);
+		-webkit-transform: translateY(-2px);
+		transform: translateY(-2px);
 	}
 `;

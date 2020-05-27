@@ -1,9 +1,7 @@
-const moviesReducerDefaultState = [];
-
-const moviesReducer = (state = moviesReducerDefaultState, action) => {
-	switch (action) {
+const moviesReducer = (state = [], action) => {
+	switch (action.type) {
 		case "ADD_MOVIE":
-			return [...state, action.movie];
+			return [...state, { ...action.movie }];
 
 		default:
 			return state;
