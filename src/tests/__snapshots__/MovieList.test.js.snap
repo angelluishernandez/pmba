@@ -2,4 +2,49 @@
 
 exports[`should render MovieList with empty list message 1`] = `<div />`;
 
-exports[`should render MoviesList correctly 1`] = `<div />`;
+exports[`should render MoviesList correctly 1`] = `
+<div>
+  <Connect(MovieItem)
+    key="0"
+    movie={
+      Object {
+        "genres": Array [
+          "one",
+          "two",
+        ],
+        "id": 1,
+        "movieName": "movieName",
+        "watched": false,
+      }
+    }
+  />
+  <Connect(MovieItem)
+    key="1"
+    movie={
+      Object {
+        "genres": Array [
+          "three",
+          "four",
+        ],
+        "id": 2,
+        "movieName": "movieName2",
+        "watched": false,
+      }
+    }
+  />
+  <Connect(MovieItem)
+    key="2"
+    movie={
+      Object {
+        "genres": Array [
+          "comedy",
+          "four",
+        ],
+        "id": 3,
+        "movieName": "movieName3",
+        "watched": false,
+      }
+    }
+  />
+</div>
+`;

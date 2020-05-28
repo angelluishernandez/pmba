@@ -23,7 +23,7 @@ const MovieItem = ({ movie, setToWatched }) => {
 						<h3>Genres</h3>
 						<ul>
 							{movie.movieGenres.map((genre, index) => (
-								<li>{genre}</li>
+								<li key={index}>{genre}</li>
 							))}
 						</ul>
 					</div>

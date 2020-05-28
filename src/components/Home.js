@@ -20,11 +20,11 @@ const Home = ({ addMovie, moviesToDisplay, setFilters }) => {
 		if (Object.keys(movie).length !== 0) {
 			addMovie(movie);
 		}
-	}, [movie]);
+	}, [movie, addMovie]);
 
 	useEffect(() => {
 		setFilters(filtersSelected);
-	}, [filtersSelected]);
+	}, [filtersSelected, setFilters]);
 
 	// Handle movie submit
 
@@ -81,7 +81,7 @@ const Home = ({ addMovie, moviesToDisplay, setFilters }) => {
 				movieGenres={movieGenres}
 			/>
 
-			{moviesToDisplay !== [] ? (
+			{moviesToDisplay !== undefined ? (
 				<MoviesList movies={moviesToDisplay} />
 			) : (
 				<h1>No movies have been added yet</h1>
