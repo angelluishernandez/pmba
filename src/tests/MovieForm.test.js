@@ -1,28 +1,54 @@
-import { configure, shallow, mount } from "enzyme";
+import { configure, shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import toJSON from "enzyme-to-json";
 import React from "react";
-import configureMockStore from "redux-mock-store";
 
 import MovieForm from "../components/MovieForm";
-import Home from "../components/Home";
+import { Input } from "../components/styled-components/Input";
 
-const middlewares = [];
-const createMockStore = configureMockStore(middlewares);
+let wrapper, props;
+
+beforeEach(() => {
+	props = {
+		setMovieName: jest.fn(),
+		setMovieGenres: jest.fn(),
+	};
+	wrapper = shallow(
+		<MovieForm
+			setMovieName={props.setMovieName}
+			setMovieGenres={props.setMovieGenres}
+		/>
+	);
+});
 
 configure({ adapter: new Adapter() });
 
 test("should render Movieform correctly", () => {
-	const wrapper = shallow(<MovieForm />);
 	expect(toJSON(wrapper)).toMatchSnapshot();
 });
 
-test("should change movie name in parent component on input change", () => {
-	const initialState = { movies: [], filters: [] };
-	const store = createMockStore(initialState);
-	const value = "movieName";
-	const wrapper = mount(<Home store={store} />);
-	const input = wrapper.find(<MovieForm movieName={""} />).at(0);
-	input.simulate("change", { target: { value } });
-	expect(input.prop("movieName")).toEqual(value);
+test("should call setMovieName onchange event in first input", () => {
+	const input = wrapper.find(Input).at(0);
+
+	const event = {
+		preventDefault() {},
+		target: { value: "movieName" },
+	};
+
+	input.simulate("change", event);
+
+	expect(props.setMovieName).toHaveBeenCalled();
+});
+
+test("should call setMovieGenres on change event in second input", () => {
+	const input = wrapper.find(Input).at(1);
+
+	const event = {
+		preventDefault() {},
+		target: { value: "movieName" },
+	};
+
+	input.simulate("change", event);
+
+	expect(props.setMovieGenres).toHaveBeenCalled();
 });

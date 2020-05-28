@@ -1,7 +1,4 @@
-const moviesReducer = (
-	state = [{ name: "some movie", movieGenres: ["one", "two"], watched: false }],
-	action
-) => {
+const moviesReducer = (state = [], action) => {
 	switch (action.type) {
 		case "ADD_MOVIE":
 			return [...state, { ...action.movie }];

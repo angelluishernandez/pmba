@@ -2,8 +2,21 @@
 
 exports[`should render FilterBar correctly 1`] = `
 <styled.div>
-  <styled.button>
-    Reset
-  </styled.button>
+  <h4>
+    Filter your movies
+  </h4>
+  <FilterBarItem
+    genre="genreOne"
+    key="0"
+  />
+  <FilterBarItem
+    genre="genreTwo"
+    key="1"
+  />
+  <div>
+    <styled.button>
+      Reset
+    </styled.button>
+  </div>
 </styled.div>
 `;

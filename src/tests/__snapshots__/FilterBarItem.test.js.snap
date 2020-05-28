@@ -2,16 +2,18 @@
 
 exports[`should render FilterBarItem correctly 1`] = `
 <styled.div>
-  <label
-    htmlFor="genre"
-  >
-    genre
-  </label>
-  <input
-    checked={false}
-    onChange={[Function]}
-    type="radio"
-    value="genre"
-  />
+  <div>
+    <label
+      htmlFor="genre"
+    >
+      genre
+    </label>
+    <input
+      checked={false}
+      onChange={[Function]}
+      type="radio"
+      value="genre"
+    />
+  </div>
 </styled.div>
 `;

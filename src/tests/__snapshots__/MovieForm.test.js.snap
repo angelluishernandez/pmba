@@ -1,8 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render Movieform correctly 1`] = `
-<form>
-  <div>
+<styled.form>
+  <h4>
+    Create a movie
+  </h4>
+  <styled.div>
     <label
       htmlFor="movieName"
     >
@@ -12,8 +15,8 @@ exports[`should render Movieform correctly 1`] = `
       onChange={[Function]}
       type="text"
     />
-  </div>
-  <div>
+  </styled.div>
+  <styled.div>
     <label
       htmlFor="movieGenres"
     >
@@ -23,9 +26,9 @@ exports[`should render Movieform correctly 1`] = `
       onChange={[Function]}
       type="text"
     />
-  </div>
-  <styled.button>
-    Add a movie
-  </styled.button>
-</form>
+    <styled.button>
+      Add a movie
+    </styled.button>
+  </styled.div>
+</styled.form>
 `;

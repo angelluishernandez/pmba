@@ -2,6 +2,10 @@
 
 exports[`should render navbar correctly 1`] = `
 <styled.nav>
-  This is the navbar
+  <Link
+    to="/"
+  >
+    The Power MBA
+  </Link>
 </styled.nav>
 `;

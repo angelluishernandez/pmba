@@ -81,7 +81,7 @@ const Home = ({ addMovie, moviesToDisplay, setFilters }) => {
 				movieGenres={movieGenres}
 			/>
 
-			{moviesToDisplay !== undefined ? (
+			{moviesToDisplay !== [] ? (
 				<MoviesList movies={moviesToDisplay} />
 			) : (
 				<h1>No movies have been added yet</h1>
