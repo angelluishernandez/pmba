@@ -1,3 +1,17 @@
+
+## This is a project made by Ángel Luis Hernández Herrero
+
+## In this project I have used: {
+  for state management => redux, react-redux, redux-logger,
+  for styling => styled-components, 
+
+
+} 
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
