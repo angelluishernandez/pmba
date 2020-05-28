@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import moviesReducer from "./reducers/movies.reducer";
+import filtersReducer from "./reducers/filters.reducer";
 import thunk from "redux-thunk";
 import { createLogger } from "redux-logger";
 
@@ -8,6 +9,7 @@ const createLoggerMiddleware = createLogger();
 
 const rootReducer = combineReducers({
 	movies: moviesReducer,
+	filters: filtersReducer,
 });
 
 export default () => {

@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Input } from "./styled-components/Input";
-import { ButtonContainer } from "./styled-components/ButtonContainer";
 import { connect } from "react-redux";
 import { addMovie } from "../redux/actions/movies.actions";
 import MoviesList from "./MoviesList";
+import MovieForm from "./MovieForm";
 import { v4 as uuidv4 } from "uuid";
 import FilterBar from "./FilterBar";
+import moviesSelector from "../redux/selectors/movies.selector";
+import { setFilters } from "../redux/actions/filters.actions";
 
-const Home = ({ addMovie, movies }) => {
+const Home = ({ addMovie, moviesToDisplay, setFilters }) => {
+	const genresArr = ["Horror", "Romance", "Comedy"];
+
 	const [movieName, setMovieName] = useState("");
 	const [movieGenres, setMovieGenres] = useState([]);
 	const [movie, setMovie] = useState({});
-	const genresFilter = ["Horror", "Romance", "Comedy"];
-	const [filterGenres, setFilterGenres] = useState([]);
+	const [filtersSelected, setFiltersSelected] = useState([]);
 
 	useEffect(() => {
 		if (Object.keys(movie).length !== 0) {
@@ -20,7 +22,11 @@ const Home = ({ addMovie, movies }) => {
 		}
 	}, [movie]);
 
-	// Handle new movie submit
+	useEffect(() => {
+		setFilters(filtersSelected);
+	}, [filtersSelected]);
+
+	// Handle movie submit
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -46,54 +52,53 @@ const Home = ({ addMovie, movies }) => {
 		});
 	};
 
-	// Handle filter radio changes
+	// Handle movie filters
 
 	const handleRadioChange = (e) => {
 		const value = e.target.value.toLowerCase();
-		setFilterGenres([...filterGenres, value]);
+		if (!filtersSelected.includes(value)) {
+			setFiltersSelected([...filtersSelected, value]);
+		}
 	};
+
+	//Reset filters
+
+	const onReset = () => setFiltersSelected([]);
 
 	return (
 		<React.Fragment>
 			<FilterBar
-				filterGenres={filterGenres}
-				setFilterGenres={setFilterGenres}
 				handleRadioChange={handleRadioChange}
+				filtersSelected={filtersSelected}
+				genresArr={genresArr}
+				onReset={onReset}
 			/>
-			{/* // This should have its own component */}
+			<MovieForm
+				handleSubmit={handleSubmit}
+				setMovieName={setMovieName}
+				movieName={movieName}
+				setMovieGenres={setMovieGenres}
+				movieGenres={movieGenres}
+			/>
 
-			<form onSubmit={handleSubmit}>
-				<div>
-					<label htmlFor="movieName">Movie name</label>
-					<Input
-						type="text"
-						onChange={(e) => setMovieName(e.target.value)}
-						value={movieName}
-					/>
-				</div>
-
-				<div>
-					<label htmlFor="movieGenres">Movie genres</label>
-					<Input
-						type="text"
-						onChange={(e) => setMovieGenres(e.target.value)}
-						value={movieGenres}
-					/>
-				</div>
-				<ButtonContainer>Add a movie</ButtonContainer>
-			</form>
-
-			<MoviesList movies={movies} />
+			{moviesToDisplay !== undefined ? (
+				<MoviesList movies={moviesToDisplay} />
+			) : (
+				<h1>No movies have been added yet</h1>
+			)}
 		</React.Fragment>
 	);
 };
 
-const mapStateToProps = (state) => ({
-	movies: state.movies,
-});
+const mapStateToProps = (state) => {
+	return {
+		moviesToDisplay: moviesSelector(state.movies, state.filters),
+	};
+};
 
 const mapDispatchToProps = (dispatch) => ({
 	addMovie: (movie) => dispatch(addMovie(movie)),
+	setFilters: (filtersSelected) => dispatch(setFilters(filtersSelected)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

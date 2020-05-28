@@ -1,40 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import FilterBarItem from "./FilterBarItem";
 import { FilterBarWrapper } from "./styled-components/FilterBarWrapper";
 import { ButtonContainer } from "./styled-components/ButtonContainer";
 
-import { connect } from "react-redux";
-import { filterByGenre } from "../redux/actions/movies.actions";
-
-const FilterBar = ({ filterGenres, setFilterGenres, handleRadioChange }) => {
-	useEffect(() => {
-		filterByGenre(filterGenres);
-	}, [filterGenres]);
-
-	const onReset = () => setFilterGenres([]);
+const FilterBar = (props) => {
+	const { genresArr, filtersSelected, handleRadioChange, onReset } = props;
 
 	return (
 		<FilterBarWrapper>
-			{filterGenres.map((genre, index) => (
+			<h4>Filter your movies</h4>
+			{genresArr.map((genre, index) => (
 				<FilterBarItem
 					genre={genre}
-					key={index}
-					filterGenres={filterGenres}
+					filtersSelected={filtersSelected}
 					handleRadioChange={handleRadioChange}
+					key={index}
 				/>
 			))}
-
-			<ButtonContainer onClick={onReset}>Reset</ButtonContainer>
+			<div>
+				<ButtonContainer onClick={onReset}>Reset</ButtonContainer>
+			</div>
 		</FilterBarWrapper>
 	);
 };
 
-const mapStateToProps = (state) => ({
-	movies: state.movies,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-	filterByGenre: (genres) => dispatch(filterByGenre(genres)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(FilterBar);
+export default FilterBar;

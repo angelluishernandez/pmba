@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render navbar correctly 1`] = `
+<styled.nav>
+  This is the navbar
+</styled.nav>
+`;

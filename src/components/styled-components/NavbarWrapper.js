@@ -7,4 +7,9 @@ export const NavbarWrapper = styled.nav`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	a {
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
+	}
 `;

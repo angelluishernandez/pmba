@@ -9,7 +9,6 @@ function App() {
 	return (
 		<React.Fragment>
 			<Navbar />
-			<FilterBar />
 			<Switch>
 				<Route exact path={"/"} component={Home} />
 			</Switch>

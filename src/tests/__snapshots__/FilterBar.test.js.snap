@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render FilterBar correctly 1`] = `
+<styled.div>
+  <styled.button>
+    Reset
+  </styled.button>
+</styled.div>
+`;

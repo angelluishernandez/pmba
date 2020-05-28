@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Movieform correctly 1`] = `
+<form>
+  <div>
+    <label
+      htmlFor="movieName"
+    >
+      Movie name
+    </label>
+    <styled.input
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="movieGenres"
+    >
+      Movie genres
+    </label>
+    <styled.input
+      onChange={[Function]}
+      type="text"
+    />
+  </div>
+  <styled.button>
+    Add a movie
+  </styled.button>
+</form>
+`;

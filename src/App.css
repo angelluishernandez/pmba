@@ -7,6 +7,21 @@
 	--mainRed: #ff6961;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--titleFont);
+}
+p,
+a,
+span,
+li {
+	font-family: var(--textFont);
+}
+
 .App {
 	text-align: center;
 }

@@ -1,41 +1,48 @@
 import React from "react";
 import { ButtonContainer } from "./styled-components/ButtonContainer";
+import { MovieItemWrapper } from "./styled-components/MovieItemWrapper";
 import { setToWatched } from "../redux/actions/movies.actions";
 import { connect } from "react-redux";
+import { FormItemWrapper } from "./styled-components/FormItemWrapper";
 
 const MovieItem = ({ movie, setToWatched }) => {
 	const handleRadioChange = (e) => {
 		setToWatched(movie.id);
 	};
 
-	console.log("*********************************");
-	console.log(movie);
-
 	return (
-		<div>
+		<>
 			{movie === undefined && movie !== [] ? (
 				<div>Loading...</div>
 			) : (
-				<div>
-					<h5>Movie name</h5>
-					<p>{movie.name}</p>
+				<MovieItemWrapper>
 					<div>
-						<h5>Genres</h5>
-						{movie.movieGenres.map((genre, index) => (
-							<span key={index}>{genre}</span>
-						))}
+						<h3>{movie.name}</h3>
 					</div>
-					<h5>Has been watched?</h5>
-					<input
-						type="checkbox"
-						value="hasBeenWatched"
-						checked={movie.watched}
-						onChange={(e) => handleRadioChange(e)}
-					/>
-					<ButtonContainer delete>Delete</ButtonContainer>
-				</div>
+					<div>
+						<h3>Genres</h3>
+						<ul>
+							{movie.movieGenres.map((genre, index) => (
+								<li>{genre}</li>
+							))}
+						</ul>
+					</div>
+
+					<FormItemWrapper>
+						<div>
+							<label>Have you watched it already?</label>
+						</div>
+						<input
+							type="checkbox"
+							value="hasBeenWatched"
+							checked={movie.watched}
+							onChange={(e) => handleRadioChange(e)}
+						/>
+						<ButtonContainer delete>Delete</ButtonContainer>
+					</FormItemWrapper>
+				</MovieItemWrapper>
 			)}
-		</div>
+		</>
 	);
 };
 
